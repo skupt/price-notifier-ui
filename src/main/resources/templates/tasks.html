@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+
+    <title>Tasks</title>
+</head>
+<body>
+
+<div class="container">
+    <h1>Tasks</h1>
+    <form name="tasksForm" th:action="@{/products}" method="get" th:if="${(taskList != null)}">
+        <table class="table">
+            <tr>
+                <th scope="col"/>
+                Type</th>
+                <th scope="col"/>
+                Number</th>
+                <th scope="col"/>
+                Status</th>
+                <th scope="col"/>
+                Result</th>
+            </tr>
+            <tr th:each="t : ${taskList}">
+                <td th:utext="${t.getClass().getSimpleName()}"></td>
+                <td th:utext="${t.getId()}"></td>
+                <td th:utext="${t.getTaskStatus()}"></td>
+                <td><input type="radio" name="taskId" th:value="${t.getId()}"/></td>
+            </tr>
+        </table>
+        <button type="submit" class="btn btn-primary btn-lg">Get Task Result</button>
+    </form>
+    <a th:href="@{/tasks?cmd=prevPage}"/>Previous</a>
+    <span th:text="${(session.pageTasks.getNumber()+1) + ' of ' + (session.pageTasks.getTotalPages())}"></span>
+    <a th:href="@{/tasks?cmd=nextPage}"/>Next</a>
+    <p><a th:href="@{/tasks/search/new}"/>New task</a>
+    </p>
+
+</div>
+</body>
+
+</html>

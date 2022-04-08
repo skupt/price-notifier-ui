@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+
+    <title>Products of task</title>
+</head>
+<body>
+
+<div class="container">
+    <h1>Tasks</h1>
+    <form name="productsForm" th:action="@{/products}" method="get" th:if="${(productList != null)}">
+        <table class="table">
+            <tr>
+                <th scope="col"/>
+                Name</th>
+                <th scope="col"/>
+                Price</th>
+                <th scope="col"/>
+                Company</th>
+            </tr>
+            <tr th:each="p : ${productList}">
+                <td th:utext="${p.getName()}"></td>
+                <td th:utext="${p.getPrice()}"></td>
+                <td th:utext="${p.getCompanyExtName()}"></td>
+            </tr>
+        </table>
+    </form>
+    <a th:href="@{/products?cmd=prevPage&taskId=}+${taskId}"/>Previous</a>
+    <span th:text="${(session.pageProducts.getNumber()+1) + ' of ' + (session.pageProducts.getTotalPages())}"></span>
+    <a th:href="@{/products?cmd=nextPage&taskId=}+${taskId}"/>Next</a>
+    <p><a th:href="@{/tasks}"/>Back to tasks</a>
+    </p>
+
+
+</div>
+</body>
+
+</html>

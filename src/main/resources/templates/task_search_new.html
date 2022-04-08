@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+
+    <title>New search task</title>
+</head>
+<body>
+
+<div class="container">
+
+    <div id="loginDiv" class="jumbotron">
+        <h1>New search task</h1>
+
+        <form id="search_task_new_form" th:method="POST" th:action="@{/tasks/search/}" th:object="${searchTaskDto}">
+            <div>
+                <label for="domain">Platform domain</label>
+                <p><input type="text" th:field="*{domain}" id="domain"></p>
+                <p th:if="${#fields.hasErrors('domain')}" th:errors="*{domain}">Domain is not supported</p>
+            </div>
+
+            <div>
+                <label for="keywords">Key phrase</label>
+                <p><input type="text" th:field="*{keywords}" id="keywords"></p>
+                <p th:if="${#fields.hasErrors('keywords')}" th:errors="*{keywords}">Errors in keywords</p>
+            </div>
+
+            <div>
+                <label for="domainUser">Login for platform</label>
+                <p><input type="text" th:field="*{domainUser}" id="domainUser"></p>
+                <p th:if="${#fields.hasErrors('domainUser')}" th:errors="*{domainUser}">Errors in login</p>
+            </div>
+
+            <div>
+                <label for="domainPassword">Login for platform</label>
+                <p><input type="text" th:field="*{domainPassword}" id="domainPassword"></p>
+                <p th:if="${#fields.hasErrors('domainPassword')}" th:errors="*{domainPassword}">Errors in password</p>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-lg" name="button"><span>Send task</span></button>
+        </form>
+    </div>
+</div>
+</body>
+
+</html>

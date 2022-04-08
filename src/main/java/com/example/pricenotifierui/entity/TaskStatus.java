@@ -1,0 +1,5 @@
+package com.example.pricenotifierui.entity;
+
+public enum TaskStatus {
+    NEW, PROCESSING, PROCESSING_FAILED, PROCESSED, NOTIFYING_FAILED, NOTIFIED, SENT, CALLBACK_FOR_PRODUCTS_FAILED, FINISHED
+}
